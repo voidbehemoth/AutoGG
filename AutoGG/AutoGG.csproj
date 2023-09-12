@@ -1,0 +1,32 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net6.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>disable</Nullable>
+    <BaseOutputPath>E:\Dev\TOS2\AutoGG\AutoGG\AutoGG\bin</BaseOutputPath>
+	  <Optimize>true</Optimize>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="HarmonyX" Version="2.10.2" />
+  </ItemGroup>
+
+	<ItemGroup>
+		<EmbeddedResource Include="Resources/AutoGG.modinfo.json"></EmbeddedResource>
+		<EmbeddedResource Include="Resources/AutoGG.resources.images.thumbnail.png"></EmbeddedResource>
+	</ItemGroup>
+
+  <ItemGroup>
+    <Reference Include="Assembly-CSharp">
+      <HintPath>..\..\..\..\..\SteamLibrary\steamapps\common\Town of Salem 2\TownOfSalem2_Data\Managed\Assembly-CSharp.dll</HintPath>
+    </Reference>
+    <Reference Include="SalemModLoader">
+      <HintPath>..\..\..\..\..\SteamLibrary\steamapps\common\Town of Salem 2\BepInEx\plugins\SalemModLoader.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.CoreModule">
+      <HintPath>..\..\..\..\..\SteamLibrary\steamapps\common\Town of Salem 2\TownOfSalem2_Data\Managed\UnityEngine.CoreModule.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+
+</Project>

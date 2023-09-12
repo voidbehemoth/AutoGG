@@ -1,0 +1,11 @@
+{
+  "HarmonyId": "voidbehemoth.autogg",
+  "DisplayName": "Auto GG",
+  "Authors": [
+    "Voidbehemoth"
+  ],
+  "Description": "For when being a good sport is too hard.",
+  "Version": "1.0.0",
+  "RequiredMods": [],
+  "Settings": {}
+}
