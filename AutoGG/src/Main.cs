@@ -7,8 +7,7 @@ namespace Main
     [Mod.SalemMod]
     public class Main
     {
-        
-        public void Start()
+        public static void Start()
         {
             Console.WriteLine("ain't no way");
         }
