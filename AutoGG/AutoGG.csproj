@@ -7,6 +7,7 @@
     <BaseOutputPath>E:\Dev\TOS2\AutoGG\AutoGG\AutoGG\bin</BaseOutputPath>
 	  <Optimize>true</Optimize>
 	  <LangVersion>10.0</LangVersion>
+	  <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
   </PropertyGroup>
 
   <ItemGroup>
@@ -20,7 +21,7 @@
 
   <ItemGroup>
     <Reference Include="Assembly-CSharp">
-      <HintPath>..\..\..\..\..\SteamLibrary\steamapps\common\Town of Salem 2\TownOfSalem2_Data\Managed\Assembly-CSharp.dll</HintPath>
+      <HintPath>..\..\..\..\..\SteamLibrary\steamapps\common\Town of Salem 2\TownOfSalem2_Data\Managed\publicized_assemblies\Assembly-CSharp_publicized.dll</HintPath>
     </Reference>
     <Reference Include="SalemModLoader">
       <HintPath>..\..\..\..\..\SteamLibrary\steamapps\common\Town of Salem 2\BepInEx\plugins\SalemModLoader.dll</HintPath>

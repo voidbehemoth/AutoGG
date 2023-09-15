@@ -32,10 +32,8 @@ namespace SalemModLoader
         [HarmonyPostfix]
         public static void Postfix(HomeLocalizationService __instance)
         {
-            Dictionary<string, string> stringTable_ = Traverse.Create<HomeLocalizationService>().Property("stringTable_").GetValue<Dictionary<string, string>>();
-            stringTable_.Add("DEFAULT_GAME_END", "gg");
-            stringTable_.Add("DEFAULT_GAME_START", "gl");
-            Traverse.Create<HomeLocalizationService>().Property("stringTable_").SetValue(stringTable_);
+            __instance.stringTable_.Add("DEFAULT_GAME_END", "gg");
+            __instance.stringTable_.Add("DEFAULT_GAME_START", "gl");
         }
     }
 }
