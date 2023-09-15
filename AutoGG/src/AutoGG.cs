@@ -28,7 +28,7 @@ namespace AutoGG
 
             if (gameInfo.gamePhase == GamePhase.RESULTS && ModSettings.GetBool("Send Game Over Message"))
             {
-                Service.Game.Sim.simulation.SendChat(AutoGGUtils.GetGameOverMessage(results));
+                Service.Game.Sim.simulation.SendChat(AutoGGUtils.GetFancyGameOverMessage(results));
                 results = null;
             }
         }
@@ -61,7 +61,13 @@ namespace AutoGG
     public static class AutoGGUtils
     {
         
+        public static string GetFancyGameOverMessage(GameResults results)
+        {
+            string faction = results.winningFaction.ToString();
 
+
+            return GetGameOverMessage(results).Replace("%faction%", results.winType == WinType.DRAW ? "" : "[[#" + faction + "]]");
+        }
         public static string GetGameOverMessage(GameResults results)
         {
             GameSimulation sim = Services.Service.Game.Sim.simulation;
