@@ -7,5 +7,54 @@
   "Description": "For when being a good sport is too hard.",
   "Version": "1.0.0",
   "RequiredMods": [],
-  "Settings": {}
+  "Settings": {
+    "CheckboxSettings": [
+      {
+        "Name": "Send Game Over Message",
+        "Description": "Whether or not the game over message will be sent.",
+        "DefaultValue": true,
+        "AvailableInGame": true
+      },
+      {
+        "Name": "Send Game Start Message",
+        "Description": "Whether or not the game start message will be sent.",
+        "DefaultValue": false,
+        "AvailableInGame": true
+      }
+    ],
+    "TextInputSettings": [
+      {
+        "Name": "Game Over Message",
+        "Description": "This is the message that will automatically be sent when a game ends.",
+        "DefaultValue": "gg",
+        "Regex": "",
+        "CharacterLimit": -1,
+        "AvailableInGame": true
+      },
+      {
+        "Name": "Won Game Message",
+        "Description": "This is the message that will automatically be sent when a game ends if you win. Overrides the 'Game Over Message' setting if set.",
+        "DefaultValue": "",
+        "Regex": "",
+        "CharacterLimit": -1,
+        "AvailableInGame": true
+      },
+      {
+        "Name": "Lost Game Message",
+        "Description": "This is the message that will automatically be sent when a game ends if you lose. Overrides the 'Game Over Message' setting if set.",
+        "DefaultValue": "",
+        "Regex": "",
+        "CharacterLimit": -1,
+        "AvailableInGame": true
+      },
+      {
+        "Name": "Game Start Message",
+        "Description": "This is the message that will automatically be sent once the first day begins.",
+        "DefaultValue": "gl",
+        "Regex": "",
+        "CharacterLimit": -1,
+        "AvailableInGame": true
+      }
+    ]
+  }
 }

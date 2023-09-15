@@ -1,11 +1,12 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFramework>net6.0</TargetFramework>
+    <TargetFramework>net481</TargetFramework>
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>disable</Nullable>
     <BaseOutputPath>E:\Dev\TOS2\AutoGG\AutoGG\AutoGG\bin</BaseOutputPath>
 	  <Optimize>true</Optimize>
+	  <LangVersion>10.0</LangVersion>
   </PropertyGroup>
 
   <ItemGroup>
