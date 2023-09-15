@@ -48,6 +48,14 @@
         "AvailableInGame": true
       },
       {
+        "Name": "Drawn Game Message",
+        "Description": "This is the message that will automatically be sent when a game ends if no one wins. Overrides the 'Game Over Message' setting if set.",
+        "DefaultValue": "",
+        "Regex": "",
+        "CharacterLimit": -1,
+        "AvailableInGame": true
+      },
+      {
         "Name": "Game Start Message",
         "Description": "This is the message that will automatically be sent once the first day begins.",
         "DefaultValue": "gl",

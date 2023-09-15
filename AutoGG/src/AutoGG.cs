@@ -68,6 +68,7 @@ namespace AutoGG
 
             string wonMessage = ModSettings.GetString("Won Game Message");
             string lostMessage = ModSettings.GetString("Lost Game Message");
+            string drawnMessage = ModSettings.GetString("Drawn Game Message");
             string endMessage = ModSettings.GetString("Game Over Message");
 
             bool won = results.entries.Find(entry => entry.playerId.Equals(Services.Service.Home.UserService.UserInfo.AccountID)).won;
@@ -77,6 +78,8 @@ namespace AutoGG
             } else if (!string.IsNullOrEmpty(lostMessage) && !won)
             {
                 return lostMessage;
+            } else if (!string.IsNullOrEmpty(drawnMessage) && results.winType == WinType.DRAW) {
+                return drawnMessage;
             } else if (!string.IsNullOrEmpty(endMessage)) {
                 return endMessage;
             } else return l10n("DEFAULT_GAME_END");
