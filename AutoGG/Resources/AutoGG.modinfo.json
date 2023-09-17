@@ -25,7 +25,7 @@
     "TextInputSettings": [
       {
         "Name": "Game Over Message",
-        "Description": "This is the message that will automatically be sent when a game ends.",
+        "Description": "This is the message that will automatically be sent when a game ends. '%faction%' will be replaced with the winning faction. '%faction%' will be replaced with the winning faction.",
         "DefaultValue": "gg",
         "Regex": "",
         "CharacterLimit": -1,
@@ -33,7 +33,7 @@
       },
       {
         "Name": "Won Game Message",
-        "Description": "This is the message that will automatically be sent when a game ends if you win. Overrides the 'Game Over Message' setting if set.",
+        "Description": "This is the message that will automatically be sent when a game ends if you win. Overrides the 'Game Over Message' setting if set. '%faction%' will be replaced with the winning faction.",
         "DefaultValue": "",
         "Regex": "",
         "CharacterLimit": -1,
@@ -41,7 +41,7 @@
       },
       {
         "Name": "Lost Game Message",
-        "Description": "This is the message that will automatically be sent when a game ends if you lose. Overrides the 'Game Over Message' setting if set.",
+        "Description": "This is the message that will automatically be sent when a game ends if you lose. Overrides the 'Game Over Message' setting if set. '%faction%' will be replaced with the winning faction.",
         "DefaultValue": "",
         "Regex": "",
         "CharacterLimit": -1,
@@ -49,7 +49,7 @@
       },
       {
         "Name": "Drawn Game Message",
-        "Description": "This is the message that will automatically be sent when a game ends if no one wins. Overrides the 'Game Over Message' setting if set.",
+        "Description": "This is the message that will automatically be sent when a game ends if no one wins. Overrides the 'Game Over Message' setting if set. '%faction%' will be replaced with the winning faction.",
         "DefaultValue": "",
         "Regex": "",
         "CharacterLimit": -1,

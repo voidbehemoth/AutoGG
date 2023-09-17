@@ -1,14 +1,9 @@
 ﻿using Game.Interface;
-using Game.Services;
-using Game.Simulation;
 using HarmonyLib;
-using Server.Shared.Info;
-using Server.Shared.Messages;
 using Server.Shared.State;
 using Services;
 using SML;
 using System;
-using System.Collections;
 
 namespace AutoGG
 {
@@ -34,11 +29,10 @@ namespace AutoGG
 
         private static void HandleGameResults(GameResults results)
         {
-            if (results.entries.Count < 1) return;
+            if (results.entries.Count < 1) return; // If gameresults sent falsely
 
             if (ModSettings.GetBool("Send Game Over Message", "behemoth.autogg"))
             {
-
                 Service.Game.Sim.simulation.SendChat(AutoGGUtils.GetFancyGameOverMessage(results));
             }
         }
@@ -68,14 +62,13 @@ namespace AutoGG
 
     public static class AutoGGUtils
     {
-
+        // Default values to be sent if config is left blank
         public static readonly string DEFAULT_GAME_END = "gg";
         public static readonly string DEFAULT_GAME_START = "gl";
 
         public static string GetFancyGameOverMessage(GameResults results)
         {
             string faction = results.winningFaction.ToString();
-
 
             return GetGameOverMessage(results).Replace("%faction%", results.winType == WinType.DRAW ? "" : "[[#" + faction + "]]");
         }
@@ -84,12 +77,15 @@ namespace AutoGG
 
             int myPosition = Pepper.GetMyPosition();
 
+            // Get messages from the config
             string wonMessage = ModSettings.GetString("Won Game Message", "behemoth.autogg");
             string lostMessage = ModSettings.GetString("Lost Game Message", "behemoth.autogg");
             string drawnMessage = ModSettings.GetString("Drawn Game Message", "behemoth.autogg");
             string endMessage = ModSettings.GetString("Game Over Message", "behemoth.autogg");
 
+            // Determine if the player won
             bool won = (myPosition >= results.entries.Count || myPosition < 0) ? false : (results.entries[myPosition].won) ? true : false;
+
             if (!string.IsNullOrEmpty(wonMessage) && won)
             {
                 return wonMessage;
