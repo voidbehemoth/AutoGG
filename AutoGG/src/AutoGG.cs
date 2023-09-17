@@ -31,7 +31,7 @@ namespace AutoGG
         {
             if (results.entries.Count < 1) return; // If gameresults sent falsely
 
-            if (ModSettings.GetBool("Send Game Over Message", "behemoth.autogg"))
+            if (ModSettings.GetBool("Send Game Over Message", "voidbehemoth.autogg"))
             {
                 Service.Game.Sim.simulation.SendChat(AutoGGUtils.GetFancyGameOverMessage(results));
             }
@@ -44,7 +44,7 @@ namespace AutoGG
         [HarmonyPostfix]
         public static void PostSubmitNamefix(PickNamesPanel __instance, string name)
         {
-            if (ModSettings.GetBool("Send Game Start Message", "behemoth.autogg"))
+            if (ModSettings.GetBool("Send Game Start Message", "voidbehemoth.autogg"))
             {
                 Service.Game.Sim.simulation.SendChat(AutoGGUtils.GetGameStartMessage());
             }
@@ -78,10 +78,10 @@ namespace AutoGG
             int myPosition = Pepper.GetMyPosition();
 
             // Get messages from the config
-            string wonMessage = ModSettings.GetString("Won Game Message", "behemoth.autogg");
-            string lostMessage = ModSettings.GetString("Lost Game Message", "behemoth.autogg");
-            string drawnMessage = ModSettings.GetString("Drawn Game Message", "behemoth.autogg");
-            string endMessage = ModSettings.GetString("Game Over Message", "behemoth.autogg");
+            string wonMessage = ModSettings.GetString("Won Game Message", "voidbehemoth.autogg");
+            string lostMessage = ModSettings.GetString("Lost Game Message", "voidbehemoth.autogg");
+            string drawnMessage = ModSettings.GetString("Drawn Game Message", "voidbehemoth.autogg");
+            string endMessage = ModSettings.GetString("Game Over Message", "voidbehemoth.autogg");
 
             // Determine if the player won
             bool won = (myPosition >= results.entries.Count || myPosition < 0) ? false : (results.entries[myPosition].won) ? true : false;
@@ -107,7 +107,7 @@ namespace AutoGG
 
         public static string GetGameStartMessage()
         {
-            string startMessage = ModSettings.GetString("Game Start Message", "behemoth.autogg");
+            string startMessage = ModSettings.GetString("Game Start Message", "voidbehemoth.autogg");
 
             return (string.IsNullOrEmpty(startMessage)) ? DEFAULT_GAME_START : startMessage;
         }
