@@ -38,7 +38,6 @@ namespace AutoGG
 
             if (ModSettings.GetBool("Send Game Over Message", "behemoth.autogg"))
             {
-                AutoGGUtils.ModLog("Sending gameover message...");
 
                 Service.Game.Sim.simulation.SendChat(AutoGGUtils.GetFancyGameOverMessage(results));
             }
