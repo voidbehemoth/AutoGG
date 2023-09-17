@@ -8,6 +8,7 @@
 	  <Optimize>true</Optimize>
 	  <LangVersion>10.0</LangVersion>
 	  <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+	  <ImplicitUsings>disable</ImplicitUsings>
   </PropertyGroup>
 
   <ItemGroup>

@@ -3,46 +3,55 @@ using Game.Services;
 using Game.Simulation;
 using HarmonyLib;
 using Server.Shared.Info;
+using Server.Shared.Messages;
 using Server.Shared.State;
 using Services;
 using SML;
-using static Utils.Storage;
+using System;
+using System.Collections;
 
 namespace AutoGG
 {
-    public static class GameEndMessage
+
+    [HarmonyPatch(typeof(EndgameWrapupOverlayController), "InitializeListeners")]
+    public class IntitializeListeners
+    {
+        [HarmonyPostfix]
+        public static void Postfix()
+        {
+            AutoGG.InitializeAutoGGListeners();
+        }
+    }
+
+    public static class AutoGG
     {
 
-        private static GameResults results;
-        public static void HandleGameResults(GameResults gameResults)
+        public static void InitializeAutoGGListeners()
         {
-            if (results.entries.Count >= 1)
-            {
-                results = gameResults;
-            }
+            StateProperty<GameResults> gameResults = Service.Game.Sim.simulation.gameResults;
+            gameResults.OnChanged = (Action<GameResults>)Delegate.Combine(gameResults.OnChanged, new Action<GameResults>(HandleGameResults));
         }
 
-        public static void HandleGameInfoChanged(GameInfo gameInfo)
+        private static void HandleGameResults(GameResults results)
         {
-            if (results == null) return;
+            if (results.entries.Count < 1) return;
 
-            if (gameInfo.gamePhase == GamePhase.RESULTS && ModSettings.GetBool("Send Game Over Message"))
+            if (ModSettings.GetBool("Send Game Over Message", "behemoth.autogg"))
             {
+                AutoGGUtils.ModLog("Sending gameover message...");
+
                 Service.Game.Sim.simulation.SendChat(AutoGGUtils.GetFancyGameOverMessage(results));
-                results = null;
             }
         }
-
-
     }
 
     [HarmonyPatch(typeof(PickNamesPanel), "HandleSubmitName")]
-    public class AutoGG
+    public class GameStartMessage
     {
         [HarmonyPostfix]
-        public static void PostPhasefix(PickNamesPanel __instance, string name)
+        public static void PostSubmitNamefix(PickNamesPanel __instance, string name)
         {
-            if (ModSettings.GetBool("Send Game Start Message"))
+            if (ModSettings.GetBool("Send Game Start Message", "behemoth.autogg"))
             {
                 Service.Game.Sim.simulation.SendChat(AutoGGUtils.GetGameStartMessage());
             }
@@ -60,7 +69,10 @@ namespace AutoGG
 
     public static class AutoGGUtils
     {
-        
+
+        public static readonly string DEFAULT_GAME_END = "gg";
+        public static readonly string DEFAULT_GAME_START = "gl";
+
         public static string GetFancyGameOverMessage(GameResults results)
         {
             string faction = results.winningFaction.ToString();
@@ -70,37 +82,44 @@ namespace AutoGG
         }
         public static string GetGameOverMessage(GameResults results)
         {
-            GameSimulation sim = Services.Service.Game.Sim.simulation;
 
-            string wonMessage = ModSettings.GetString("Won Game Message");
-            string lostMessage = ModSettings.GetString("Lost Game Message");
-            string drawnMessage = ModSettings.GetString("Drawn Game Message");
-            string endMessage = ModSettings.GetString("Game Over Message");
+            int myPosition = Pepper.GetMyPosition();
 
-            bool won = results.entries.Find(entry => entry.playerId.Equals(Services.Service.Home.UserService.UserInfo.AccountID)).won;
+            string wonMessage = ModSettings.GetString("Won Game Message", "behemoth.autogg");
+            string lostMessage = ModSettings.GetString("Lost Game Message", "behemoth.autogg");
+            string drawnMessage = ModSettings.GetString("Drawn Game Message", "behemoth.autogg");
+            string endMessage = ModSettings.GetString("Game Over Message", "behemoth.autogg");
+
+            bool won = (myPosition >= results.entries.Count || myPosition < 0) ? false : (results.entries[myPosition].won) ? true : false;
             if (!string.IsNullOrEmpty(wonMessage) && won)
             {
                 return wonMessage;
-            } else if (!string.IsNullOrEmpty(lostMessage) && !won)
+            }
+            else if (!string.IsNullOrEmpty(lostMessage) && !won)
             {
                 return lostMessage;
-            } else if (!string.IsNullOrEmpty(drawnMessage) && results.winType == WinType.DRAW) {
+            }
+            else if (!string.IsNullOrEmpty(drawnMessage) && results.winType == WinType.DRAW)
+            {
                 return drawnMessage;
-            } else if (!string.IsNullOrEmpty(endMessage)) {
+            }
+            else if (!string.IsNullOrEmpty(endMessage))
+            {
                 return endMessage;
-            } else return l10n("DEFAULT_GAME_END");
+            }
+            else return DEFAULT_GAME_END;
         }
 
         public static string GetGameStartMessage()
         {
-            string startMessage = ModSettings.GetString("Game Start Message");
+            string startMessage = ModSettings.GetString("Game Start Message", "behemoth.autogg");
 
-            return (string.IsNullOrEmpty(startMessage)) ? l10n("DEFAULT_START_GAME") : startMessage;
+            return (string.IsNullOrEmpty(startMessage)) ? DEFAULT_GAME_START : startMessage;
         }
 
-        public static string l10n(string key)
+        public static void ModLog(string message)
         {
-            return Service.Home.LocalizationService.GetLocalizedString(key);
+            Console.WriteLine("[" + MyPluginInfo.PLUGIN_GUID + "] " + message);
         }
     }
 
