@@ -22,14 +22,18 @@
 
   <ItemGroup>
     <Reference Include="Assembly-CSharp">
-      <HintPath>..\..\..\..\..\SteamLibrary\steamapps\common\Town of Salem 2\TownOfSalem2_Data\Managed\publicized_assemblies\Assembly-CSharp_publicized.dll</HintPath>
+      <HintPath>.\libs\Assembly-CSharp-publicized.dll</HintPath>
     </Reference>
     <Reference Include="SalemModLoader">
-      <HintPath>..\..\..\..\..\SteamLibrary\steamapps\common\Town of Salem 2\BepInEx\plugins\SalemModLoader.dll</HintPath>
+      <HintPath>.\libs\SalemModLoader.dll</HintPath>
     </Reference>
     <Reference Include="UnityEngine.CoreModule">
-      <HintPath>..\..\..\..\..\SteamLibrary\steamapps\common\Town of Salem 2\TownOfSalem2_Data\Managed\UnityEngine.CoreModule.dll</HintPath>
+      <HintPath>.\libs\UnityEngine.CoreModule.dll</HintPath>
     </Reference>
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="libs\" />
   </ItemGroup>
 
 </Project>
