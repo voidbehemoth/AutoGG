@@ -4,17 +4,26 @@ using Server.Shared.State;
 using Services;
 using SML;
 using System;
+using System.Linq;
 
 namespace AutoGG
 {
 
-    [HarmonyPatch(typeof(EndgameWrapupOverlayController), "InitializeListeners")]
-    public class IntitializeListeners
+    [HarmonyPatch(typeof(EndgameWrapupOverlayController))]
+    public class HandleListeners
     {
         [HarmonyPostfix]
-        public static void Postfix()
+        [HarmonyPatch("InitializeListeners")]
+        public static void InitializeListeners()
         {
             AutoGG.InitializeAutoGGListeners();
+        }
+
+        [HarmonyPostfix]
+        [HarmonyPatch("OnDestroy")]
+        public static void OnDestroy()
+        {
+            AutoGG.RemoveAutoGGListeners();
         }
     }
 
@@ -25,6 +34,14 @@ namespace AutoGG
         {
             StateProperty<GameResults> gameResults = Service.Game.Sim.simulation.gameResults;
             gameResults.OnChanged = (Action<GameResults>)Delegate.Combine(gameResults.OnChanged, new Action<GameResults>(HandleGameResults));
+            AutoGGUtils.ModLog("Successfully initialized listener!");
+        }
+
+        public static void RemoveAutoGGListeners()
+        {
+            StateProperty<GameResults> gameResults = Service.Game.Sim.simulation.gameResults;
+            gameResults.OnChanged = (Action<GameResults>)Delegate.Remove(gameResults.OnChanged, new Action<GameResults>(HandleGameResults));
+            AutoGGUtils.ModLog("Successfully removed listener!");
         }
 
         private static void HandleGameResults(GameResults results)
