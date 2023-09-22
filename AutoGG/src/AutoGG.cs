@@ -1,9 +1,11 @@
 ﻿using Game.Interface;
 using HarmonyLib;
+using Home.Services;
 using Server.Shared.State;
 using Services;
 using SML;
 using System;
+using System.Data;
 using System.Linq;
 
 namespace AutoGG
@@ -83,11 +85,21 @@ namespace AutoGG
         public static readonly string DEFAULT_GAME_END = "gg";
         public static readonly string DEFAULT_GAME_START = "gl";
 
-        public static string GetFancyGameOverMessage(GameResults results)
+        public static string GetFancyGameOverMessage(GameResults results) 
         {
-            string faction = results.winningFaction.ToString();
+            HomeLocalizationService localizationService = Service.Home.LocalizationService;
 
-            return GetGameOverMessage(results).Replace("%faction%", results.winType == WinType.DRAW ? "" : "[[#" + faction + "]]");
+            FactionType faction = results.winningFaction;
+
+            // whether to pluralize the faction name or not
+            bool plural = results.entries.FindAll((GameResults.PlayerEntry player) => { return player.factionType == faction; }).Count() > 1;
+            string pluralString = (plural) ? "PLURAL_" : ""; 
+
+            int num = (int)results.winningFaction;
+
+            string localizedString = localizationService.GetLocalizedString("FACTION_" + pluralString + num);
+
+            return GetGameOverMessage(results).Replace("%faction%", results.winType == WinType.DRAW ? "" : localizedString);
         }
         public static string GetGameOverMessage(GameResults results)
         {
