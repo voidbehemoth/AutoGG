@@ -6,17 +6,21 @@
   ],
   "Description": "For when being a good sport is too hard.",
   "Version": "1.0.0",
+  "Platforms": [ "Windows", "Mac" ],
   "RequiredMods": [],
+  "ConflictingMods": [],
   "Settings": {
     "CheckboxSettings": [
       {
         "Name": "Send Game Over Message",
+        "SettingID": "send_game_over.checkbox",
         "Description": "Whether or not the game over message will be sent.",
         "DefaultValue": true,
         "AvailableInGame": true
       },
       {
         "Name": "Send Game Start Message",
+        "SettingID": "send_game_start.checkbox",
         "Description": "Whether or not the game start message will be sent.",
         "DefaultValue": false,
         "AvailableInGame": true
@@ -25,6 +29,7 @@
     "TextInputSettings": [
       {
         "Name": "Game Over Message",
+        "SettingID": "game_over.textinput",
         "Description": "This is the message that will automatically be sent when a game ends. '%faction%' will be replaced with the winning faction. '%faction%' will be replaced with the winning faction.",
         "DefaultValue": "gg",
         "Regex": "",
@@ -33,6 +38,7 @@
       },
       {
         "Name": "Won Game Message",
+        "SettingID": "game_won.textinput",
         "Description": "This is the message that will automatically be sent when a game ends if you win. Overrides the 'Game Over Message' setting if set. '%faction%' will be replaced with the winning faction.",
         "DefaultValue": "",
         "Regex": "",
@@ -41,6 +47,7 @@
       },
       {
         "Name": "Lost Game Message",
+        "SettingID": "game_lost.textinput",
         "Description": "This is the message that will automatically be sent when a game ends if you lose. Overrides the 'Game Over Message' setting if set. '%faction%' will be replaced with the winning faction.",
         "DefaultValue": "",
         "Regex": "",
@@ -49,6 +56,7 @@
       },
       {
         "Name": "Drawn Game Message",
+        "SettingID": "game_drawn.textinput",
         "Description": "This is the message that will automatically be sent when a game ends if no one wins. Overrides the 'Game Over Message' setting if set. '%faction%' will be replaced with the winning faction.",
         "DefaultValue": "",
         "Regex": "",
@@ -57,10 +65,22 @@
       },
       {
         "Name": "Game Start Message",
+        "SettingID": "game_start.textinput",
         "Description": "This is the message that will automatically be sent once the first day begins.",
         "DefaultValue": "gl",
         "Regex": "",
         "CharacterLimit": -1,
+        "AvailableInGame": true
+      }
+    ],
+    "IntegerInputSettings": [
+      {
+        "Name": "Auto Choose Name Delay",
+        "SettingID": "auto_send.intinput",
+        "Description": "The delay (in seconds) after which it will automatically send your name in the pick names phase. Set to -1 to disable.",
+        "DefaultValue": -1,
+        "MinValue": -1,
+        "MaxValue": 10,
         "AvailableInGame": true
       }
     ]
