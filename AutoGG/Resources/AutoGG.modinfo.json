@@ -77,7 +77,7 @@
       {
         "Name": "Auto Choose Name Delay",
         "SettingID": "auto_send.intinput",
-        "Description": "The delay (in seconds) after which it will automatically send your name in the pick names phase. Set to -1 to disable.",
+        "Description": "The delay (in seconds) after which it will automatically send your name in the pick names phase. Set to -1 to disable. Maximum 10.",
         "DefaultValue": -1,
         "MinValue": -1,
         "MaxValue": 10,

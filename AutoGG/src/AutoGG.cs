@@ -7,6 +7,7 @@ using SML;
 using System;
 using System.Data;
 using System.Linq;
+using System.Threading;
 
 namespace AutoGG
 {
@@ -57,9 +58,10 @@ namespace AutoGG
         }
     }
 
-    [HarmonyPatch(typeof(PickNamesPanel), "HandleSubmitName")]
+    [HarmonyPatch(typeof(PickNamesPanel))]
     public class GameStartMessage
     {
+        [HarmonyPatch(nameof(PickNamesPanel.HandleSubmitName))]
         [HarmonyPostfix]
         public static void PostSubmitNamefix(PickNamesPanel __instance, string name)
         {
@@ -67,6 +69,21 @@ namespace AutoGG
             {
                 Service.Game.Sim.simulation.SendChat(AutoGGUtils.GetGameStartMessage());
             }
+        }
+
+        [HarmonyPatch(nameof(PickNamesPanel.Start))]
+        [HarmonyPostfix]
+        public static void PostStartFix(PickNamesPanel __instance)
+        {
+            int setting = ModSettings.GetInt("Auto Choose Name Delay", "voidbehemoth.autogg");
+
+            if (setting == -1) return;
+
+            new Thread(() =>
+            {
+                Thread.Sleep(1000 * setting);
+                __instance.HandleSubmitName(__instance.nameInput.text);
+            }).Start();
         }
     }
 

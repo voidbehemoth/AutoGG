@@ -40,6 +40,10 @@
 		<Reference Include="UnityEngine.CoreModule">
 			<HintPath>.\libs\UnityEngine.CoreModule.dll</HintPath>
 		</Reference>
+
+		<Reference Include="TMPro">
+			<HintPath>.\libs\Unity.TextMeshPro.dll</HintPath>
+		</Reference>
 	</ItemGroup>
 	<Target Name="PrepareBuildFiles" AfterTargets="BeforeBuild">
 		<DownloadFile SourceUrl="$(SalemModLoaderLink)" DownloadedFile="SalemModLoader.dll" DestinationFolder="$(MSBuildThisFileDirectory)\libs" SkipUnchangedFiles="true">
@@ -47,5 +51,6 @@
 		</DownloadFile>
 		<Exec Command="robocopy &quot;$(SteamLibraryPath)\steamapps\common\Town of Salem 2\TownOfSalem2_Data\Managed&quot; .\libs Assembly-CSharp.dll /j /mt" IgnoreExitCode="true"/>
 		<Exec Command="robocopy &quot;$(SteamLibraryPath)\steamapps\common\Town of Salem 2\TownOfSalem2_Data\Managed&quot; .\libs UnityEngine.CoreModule.dll /j /mt" IgnoreExitCode="true"/>
+		<Exec Command="robocopy &quot;$(SteamLibraryPath)\steamapps\common\Town of Salem 2\TownOfSalem2_Data\Managed&quot; .\libs Unity.TextMeshPro.dll /j /mt" IgnoreExitCode="true"/>
 	</Target>
 </Project>
