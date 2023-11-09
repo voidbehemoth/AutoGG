@@ -30,7 +30,7 @@
       {
         "Name": "Game Over Message",
         "SettingID": "game_over.textinput",
-        "Description": "This is the message that will automatically be sent when a game ends. '%faction%' will be replaced with the winning faction. '%faction%' will be replaced with the winning faction.",
+        "Description": "This is the message that will automatically be sent when a game ends. '%faction%' will be replaced with the winning faction. '%faction%' will be replaced with the winning faction. '%role%' will be replaced with your role.",
         "DefaultValue": "gg",
         "Regex": "",
         "CharacterLimit": -1,
@@ -39,7 +39,7 @@
       {
         "Name": "Won Game Message",
         "SettingID": "game_won.textinput",
-        "Description": "This is the message that will automatically be sent when a game ends if you win. Overrides the 'Game Over Message' setting if set. '%faction%' will be replaced with the winning faction.",
+        "Description": "This is the message that will automatically be sent when a game ends if you win. Overrides the 'Game Over Message' setting if set. '%faction%' will be replaced with the winning faction. '%role%' will be replaced with your role.",
         "DefaultValue": "",
         "Regex": "",
         "CharacterLimit": -1,
@@ -48,7 +48,7 @@
       {
         "Name": "Lost Game Message",
         "SettingID": "game_lost.textinput",
-        "Description": "This is the message that will automatically be sent when a game ends if you lose. Overrides the 'Game Over Message' setting if set. '%faction%' will be replaced with the winning faction.",
+        "Description": "This is the message that will automatically be sent when a game ends if you lose. Overrides the 'Game Over Message' setting if set. '%faction%' will be replaced with the winning faction. '%role%' will be replaced with your role.",
         "DefaultValue": "",
         "Regex": "",
         "CharacterLimit": -1,
@@ -57,7 +57,7 @@
       {
         "Name": "Drawn Game Message",
         "SettingID": "game_drawn.textinput",
-        "Description": "This is the message that will automatically be sent when a game ends if no one wins. Overrides the 'Game Over Message' setting if set. '%faction%' will be replaced with the winning faction.",
+        "Description": "This is the message that will automatically be sent when a game ends if no one wins. Overrides the 'Game Over Message' setting if set. '%faction%' will be replaced with the winning faction. '%role%' will be replaced with your role.",
         "DefaultValue": "",
         "Regex": "",
         "CharacterLimit": -1,

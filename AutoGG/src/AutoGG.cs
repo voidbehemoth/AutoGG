@@ -8,6 +8,7 @@ using System;
 using System.Data;
 using System.Linq;
 using System.Threading;
+using static System.Net.Mime.MediaTypeNames;
 
 namespace AutoGG
 {
@@ -102,7 +103,7 @@ namespace AutoGG
         public static readonly string DEFAULT_GAME_END = "gg";
         public static readonly string DEFAULT_GAME_START = "gl";
 
-        public static string GetFancyGameOverMessage(GameResults results) 
+        public static string GetFancyGameOverMessage(GameResults results)
         {
             HomeLocalizationService localizationService = Service.Home.LocalizationService;
 
@@ -110,19 +111,15 @@ namespace AutoGG
 
             // whether to pluralize the faction name or not
             bool plural = results.entries.FindAll((GameResults.PlayerEntry player) => { return player.factionType == faction; }).Count() > 1;
-            string pluralString = (plural) ? "PLURAL_" : ""; 
+            string pluralString = (plural) ? "PLURAL_" : "";
 
             int num = (int)results.winningFaction;
-
             string localizedString = localizationService.GetLocalizedString("AUTOGG_FACTION_" + pluralString + num);
 
-            return GetGameOverMessage(results).Replace("%faction%", results.winType == WinType.DRAW ? "" : localizedString);
+            return GetGameOverMessage(results).Replace("%faction%", results.winType == WinType.DRAW ? "" : localizedString).Replace("%role%", "[[#" + Pepper.GetMyRole().ToString() + "]]");
         }
         public static string GetGameOverMessage(GameResults results)
         {
-
-            int myPosition = Pepper.GetMyPosition();
-
             // Get messages from the config
             string wonMessage = ModSettings.GetString("Won Game Message", "voidbehemoth.autogg");
             string lostMessage = ModSettings.GetString("Lost Game Message", "voidbehemoth.autogg");
@@ -130,7 +127,7 @@ namespace AutoGG
             string endMessage = ModSettings.GetString("Game Over Message", "voidbehemoth.autogg");
 
             // Determine if the player won
-            bool won = (myPosition >= results.entries.Count || myPosition < 0) ? false : (results.entries[myPosition].won) ? true : false;
+            bool won = results.entries[Pepper.GetMyPosition()].won;
 
             if (!string.IsNullOrEmpty(wonMessage) && won)
             {
