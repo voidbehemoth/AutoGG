@@ -78,7 +78,7 @@ namespace AutoGG
         {
             int setting = ModSettings.GetInt("Auto Choose Name Delay", "voidbehemoth.autogg");
 
-            if (setting == -1) return;
+            if (setting < 1) return;
 
             new Thread(() =>
             {
