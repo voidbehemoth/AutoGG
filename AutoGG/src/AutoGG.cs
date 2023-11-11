@@ -116,7 +116,7 @@ namespace AutoGG
             int num = (int)results.winningFaction;
             string localizedString = localizationService.GetLocalizedString("AUTOGG_FACTION_" + pluralString + num);
 
-            return GetGameOverMessage(results).Replace("%faction%", results.winType == WinType.DRAW ? "" : localizedString).Replace("%role%", "[[#" + Pepper.GetMyRole().ToString() + "]]");
+            return GetGameOverMessage(results).Replace("%faction%", results.winType == WinType.DRAW ? "" : localizedString).Replace("%role%", "[[#" + ((byte)Pepper.GetMyRole()) + "]]");
         }
         public static string GetGameOverMessage(GameResults results)
         {
