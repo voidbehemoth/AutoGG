@@ -52,7 +52,7 @@ namespace AutoGG
         {
             if (results.entries.Count < 1) return; // If gameresults sent falsely
 
-            if (ModSettings.GetBool("Send Game Over Message", "voidbehemoth.autogg"))
+            if (ModSettings.GetBool("Send Gameover Message", "voidbehemoth.autogg"))
             {
                 Service.Game.Sim.simulation.SendChat(AutoGGUtils.GetFancyGameOverMessage(results));
             }
@@ -124,7 +124,7 @@ namespace AutoGG
             string wonMessage = ModSettings.GetString("Won Game Message", "voidbehemoth.autogg");
             string lostMessage = ModSettings.GetString("Lost Game Message", "voidbehemoth.autogg");
             string drawnMessage = ModSettings.GetString("Drawn Game Message", "voidbehemoth.autogg");
-            string endMessage = ModSettings.GetString("Game Over Message", "voidbehemoth.autogg");
+            string endMessage = ModSettings.GetString("Gameover Message", "voidbehemoth.autogg");
 
             // Determine if the player won
             bool won = results.entries[Pepper.GetMyPosition()].won;

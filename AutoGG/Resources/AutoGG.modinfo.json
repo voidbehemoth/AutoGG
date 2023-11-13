@@ -12,65 +12,20 @@
   "Settings": {
     "CheckboxSettings": [
       {
-        "Name": "Send Game Over Message",
-        "SettingID": "send_game_over.checkbox",
+        "Name": "Send Gameover Message",
+        "SettingID": "send_gameover.checkbox",
         "Description": "Whether or not the game over message will be sent.",
         "DefaultValue": true,
-        "AvailableInGame": true
+        "AvailableInGame": true,
+        "Available": true
       },
       {
         "Name": "Send Game Start Message",
         "SettingID": "send_game_start.checkbox",
         "Description": "Whether or not the game start message will be sent.",
         "DefaultValue": false,
-        "AvailableInGame": true
-      }
-    ],
-    "TextInputSettings": [
-      {
-        "Name": "Game Over Message",
-        "SettingID": "game_over.textinput",
-        "Description": "This is the message that will automatically be sent when a game ends. '%faction%' will be replaced with the winning faction. '%faction%' will be replaced with the winning faction. '%role%' will be replaced with your role.",
-        "DefaultValue": "gg",
-        "Regex": "",
-        "CharacterLimit": -1,
-        "AvailableInGame": true
-      },
-      {
-        "Name": "Won Game Message",
-        "SettingID": "game_won.textinput",
-        "Description": "This is the message that will automatically be sent when a game ends if you win. Overrides the 'Game Over Message' setting if set. '%faction%' will be replaced with the winning faction. '%role%' will be replaced with your role.",
-        "DefaultValue": "",
-        "Regex": "",
-        "CharacterLimit": -1,
-        "AvailableInGame": true
-      },
-      {
-        "Name": "Lost Game Message",
-        "SettingID": "game_lost.textinput",
-        "Description": "This is the message that will automatically be sent when a game ends if you lose. Overrides the 'Game Over Message' setting if set. '%faction%' will be replaced with the winning faction. '%role%' will be replaced with your role.",
-        "DefaultValue": "",
-        "Regex": "",
-        "CharacterLimit": -1,
-        "AvailableInGame": true
-      },
-      {
-        "Name": "Drawn Game Message",
-        "SettingID": "game_drawn.textinput",
-        "Description": "This is the message that will automatically be sent when a game ends if no one wins. Overrides the 'Game Over Message' setting if set. '%role%' will be replaced with your role.",
-        "DefaultValue": "",
-        "Regex": "",
-        "CharacterLimit": -1,
-        "AvailableInGame": true
-      },
-      {
-        "Name": "Game Start Message",
-        "SettingID": "game_start.textinput",
-        "Description": "This is the message that will automatically be sent once the first day begins.",
-        "DefaultValue": "gl",
-        "Regex": "",
-        "CharacterLimit": -1,
-        "AvailableInGame": true
+        "AvailableInGame": true,
+        "Available": true
       }
     ],
     "IntegerInputSettings": [
