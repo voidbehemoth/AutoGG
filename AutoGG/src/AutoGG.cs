@@ -5,9 +5,11 @@ using Server.Shared.State;
 using Services;
 using SML;
 using System;
+using System.Collections;
 using System.Data;
 using System.Linq;
 using System.Threading;
+using UnityEngine;
 using static System.Net.Mime.MediaTypeNames;
 
 namespace AutoGG
@@ -74,17 +76,15 @@ namespace AutoGG
 
         [HarmonyPatch(nameof(PickNamesPanel.Start))]
         [HarmonyPostfix]
-        public static void PostStartFix(PickNamesPanel __instance)
+        public static IEnumerator PostStartFix(IEnumerator result, PickNamesPanel __instance)
         {
             int setting = ModSettings.GetInt("Auto Choose Name Delay", "voidbehemoth.autogg");
 
-            if (setting < 1) return;
+            if (setting < 1) yield return result;
 
-            new Thread(() =>
-            {
-                Thread.Sleep(1000 * setting);
-                __instance.HandleSubmitName(__instance.nameInput.text);
-            }).Start();
+            yield return new WaitForSeconds(1000 * setting);
+            __instance.HandleSubmitName(__instance.nameInput.text);
+            yield return result;
         }
     }
 
