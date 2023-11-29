@@ -68,7 +68,7 @@ namespace AutoGG
         [HarmonyPostfix]
         public static void PostSubmitNamefix(PickNamesPanel __instance, string name)
         {
-            if (ModSettings.GetBool("Send Game Start Message", "voidbehemoth.autogg"))
+            if (ModSettings.GetBool("Send Game Start Message", "voidbehemoth.autogg") && !Pepper.IsMyInGameNameSet())
             {
                 Service.Game.Sim.simulation.SendChat(AutoGGUtils.GetGameStartMessage());
             }
