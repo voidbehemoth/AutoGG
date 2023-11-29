@@ -164,7 +164,7 @@ namespace SalemModLoader
                 ModSettings.TextInputSetting GameStartMessage = new()
                 {
                     Name = "Game Start Message",
-                    Description = "This is the message that will automatically be sent once the first day begins.",
+                    Description = "This is the message that will automatically be sent once the first day begins. '%name%' will be replaced with your in-game name that game.",
                     DefaultValue = "gl",
                     Regex = @"^(?!.*[<>]).*",
                     CharacterLimit = 140,

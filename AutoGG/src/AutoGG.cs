@@ -76,15 +76,19 @@ namespace AutoGG
 
         [HarmonyPatch(nameof(PickNamesPanel.Start))]
         [HarmonyPostfix]
-        public static IEnumerator PostStartFix(IEnumerator result, PickNamesPanel __instance)
+        public static void PostStartFix(PickNamesPanel __instance)
+        {
+            __instance.StartCoroutine(DelayedSubmitName(__instance));
+        }
+
+        private static IEnumerator DelayedSubmitName(PickNamesPanel __instance)
         {
             int setting = ModSettings.GetInt("Auto Choose Name Delay", "voidbehemoth.autogg");
 
-            if (setting < 1) yield return result;
+            if (setting < 1) yield break;
 
-            yield return new WaitForSeconds(1000 * setting);
+            yield return new WaitForSeconds(setting);
             __instance.HandleSubmitName(__instance.nameInput.text);
-            yield return result;
         }
     }
 
@@ -151,8 +155,10 @@ namespace AutoGG
         public static string GetGameStartMessage()
         {
             string startMessage = ModSettings.GetString("Game Start Message", "voidbehemoth.autogg");
+            startMessage = (string.IsNullOrEmpty(startMessage)) ? DEFAULT_GAME_START : startMessage;
 
-            return (string.IsNullOrEmpty(startMessage)) ? DEFAULT_GAME_START : startMessage;
+
+            return startMessage.Replace("%name%", Service.Home.UserService.GetGameNameFromStorage());
         }
 
         public static void ModLog(string message)
