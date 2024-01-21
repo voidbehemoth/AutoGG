@@ -125,38 +125,42 @@ namespace AutoGG
         public static string GetGameOverMessage(GameResults results)
         {
             // Get messages from the config
-            string wonMessage = ModSettings.GetString("Won Game Message", "voidbehemoth.autogg");
-            string lostMessage = ModSettings.GetString("Lost Game Message", "voidbehemoth.autogg");
-            string drawnMessage = ModSettings.GetString("Drawn Game Message", "voidbehemoth.autogg");
-            string endMessage = ModSettings.GetString("Gameover Message", "voidbehemoth.autogg");
+            string[] wonMessages = (ModSettings.GetString("Won Game Message", "voidbehemoth.autogg") ?? DEFAULT_GAME_END).Split('|');
+            string[] lostMessages = (ModSettings.GetString("Lost Game Message", "voidbehemoth.autogg") ?? DEFAULT_GAME_END).Split('|');
+            string[] drawnMessages = (ModSettings.GetString("Drawn Game Message", "voidbehemoth.autogg") ?? DEFAULT_GAME_END).Split('|');
+            string[] endMessages = (ModSettings.GetString("Gameover Message", "voidbehemoth.autogg") ?? DEFAULT_GAME_END).Split('|');
+
+            string wonMessage = wonMessages[UnityEngine.Random.Range(0, wonMessages.Length)];
+            string lostMessage = lostMessages[UnityEngine.Random.Range(0, lostMessages.Length)];
+            string drawnMessage = drawnMessages[UnityEngine.Random.Range(0, drawnMessages.Length)];
+            string endMessage = endMessages[UnityEngine.Random.Range(0, endMessages.Length)];
 
             // Determine if the player won
             bool won = results.entries[Pepper.GetMyPosition()].won;
 
-            if (!string.IsNullOrEmpty(wonMessage) && won)
+            if (won)
             {
                 return wonMessage;
             }
-            else if (!string.IsNullOrEmpty(lostMessage) && !won)
+            else if (!won)
             {
                 return lostMessage;
             }
-            else if (!string.IsNullOrEmpty(drawnMessage) && results.winType == WinType.DRAW)
+            else if (results.winType == WinType.DRAW)
             {
                 return drawnMessage;
             }
-            else if (!string.IsNullOrEmpty(endMessage))
+            else
             {
                 return endMessage;
             }
-            else return DEFAULT_GAME_END;
         }
 
         public static string GetGameStartMessage()
         {
-            string startMessage = ModSettings.GetString("Game Start Message", "voidbehemoth.autogg");
-            startMessage = (string.IsNullOrEmpty(startMessage)) ? DEFAULT_GAME_START : startMessage;
-
+            string[] startMessages = (ModSettings.GetString("Game Start Message", "voidbehemoth.autogg") ?? DEFAULT_GAME_START).Split('|');
+            
+            string startMessage = startMessages[UnityEngine.Random.Range(0, startMessages.Length)];
 
             return startMessage.Replace("%name%", Service.Home.UserService.GetGameNameFromStorage());
         }
