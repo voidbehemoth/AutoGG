@@ -79,6 +79,22 @@ namespace SalemModLoader
             __instance.stringTable_.Add("AUTOGG_FACTION_PLURAL_13", "Cursed Souls");
             __instance.stringTable_.Add("AUTOGG_FACTION_14", "");
             __instance.stringTable_.Add("AUTOGG_FACTION_PLURAL_14", "");
+
+            // BetterToS2 compat
+            if (ModStates.IsEnabled("curtis.tuba.better.tos2")) {
+                __instance.stringTable_.Add("AUTOGG_FACTION_PLURAL_33", "Jackals");
+                __instance.stringTable_.Add("AUTOGG_FACTION_PLURAL_34", "Frogs");
+                __instance.stringTable_.Add("AUTOGG_FACTION_PLURAL_35", "Lions");
+                __instance.stringTable_.Add("AUTOGG_FACTION_PLURAL_36", "Hawks");
+                __instance.stringTable_.Add("AUTOGG_FACTION_38", "Judge");
+                __instance.stringTable_.Add("AUTOGG_FACTION_PLURAL_38", "Judges");
+                __instance.stringTable_.Add("AUTOGG_FACTION_39", "Auditor");
+                __instance.stringTable_.Add("AUTOGG_FACTION_PLURAL_39", "Auditors");
+                __instance.stringTable_.Add("AUTOGG_FACTION_40", "Inquisitor");
+                __instance.stringTable_.Add("AUTOGG_FACTION_PLURAL_40", "Inquisitors");
+                __instance.stringTable_.Add("AUTOGG_FACTION_41", "Starspawn");
+                __instance.stringTable_.Add("AUTOGG_FACTION_PLURAL_41", "Starspawn");
+            }
         }
     }
 

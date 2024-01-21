@@ -1,6 +1,7 @@
 ﻿using Game.Interface;
 using HarmonyLib;
 using Home.Services;
+using Server.Shared.Extensions;
 using Server.Shared.State;
 using Services;
 using SML;
@@ -78,6 +79,8 @@ namespace AutoGG
         [HarmonyPostfix]
         public static void PostStartFix(PickNamesPanel __instance)
         {
+            if (ModStates.IsLoaded("curtis.tuba.better.tos2") && Pepper.GetCurrentGameSim().roleDeckBuilder.Data.modifierCards.Contains((Role)214)) return;
+
             __instance.StartCoroutine(DelayedSubmitName(__instance));
         }
 
