@@ -18,6 +18,7 @@ mono_crash.*
 
 # Build results
 [Ll]ibs/
+SteamLibrary.targets
 [Dd]ebug/
 [Dd]ebugPublic/
 [Rr]elease/

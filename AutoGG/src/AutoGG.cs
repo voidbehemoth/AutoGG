@@ -1,17 +1,14 @@
 ﻿using Game.Interface;
 using HarmonyLib;
 using Home.Services;
-using Server.Shared.Extensions;
 using Server.Shared.State;
 using Services;
 using SML;
 using System;
 using System.Collections;
-using System.Data;
 using System.Linq;
-using System.Threading;
 using UnityEngine;
-using static System.Net.Mime.MediaTypeNames;
+using BetterTOS2;
 
 namespace AutoGG
 {
@@ -79,7 +76,7 @@ namespace AutoGG
         [HarmonyPostfix]
         public static void PostStartFix(PickNamesPanel __instance)
         {
-            if (ModStates.IsLoaded("curtis.tuba.better.tos2") && Pepper.GetCurrentGameSim().roleDeckBuilder.Data.modifierCards.Contains((Role)214)) return;
+            if (ModStates.IsLoaded("curtis.tuba.better.tos2") && Pepper.GetCurrentGameSim().roleDeckBuilder.Data.modifierCards.Contains(RolePlus.ANON_PLAYERS)) return;
 
             __instance.StartCoroutine(DelayedSubmitName(__instance));
         }
