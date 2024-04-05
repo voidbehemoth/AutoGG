@@ -80,9 +80,13 @@ namespace SalemModLoader
             // BetterToS2 compat
             if (ModStates.IsEnabled("curtis.tuba.better.tos2")) {
                 __instance.stringTable_.Add("AUTOGG_FACTION_PLURAL_33", "Jackals");
+                __instance.stringTable_.Add("AUTOGG_FACTION_33", "Jackals");
                 __instance.stringTable_.Add("AUTOGG_FACTION_PLURAL_34", "Frogs");
+                __instance.stringTable_.Add("AUTOGG_FACTION_34", "Frogs");
                 __instance.stringTable_.Add("AUTOGG_FACTION_PLURAL_35", "Lions");
+                __instance.stringTable_.Add("AUTOGG_FACTION_35", "Lions");
                 __instance.stringTable_.Add("AUTOGG_FACTION_PLURAL_36", "Hawks");
+                __instance.stringTable_.Add("AUTOGG_FACTION_36", "Hawks");
                 __instance.stringTable_.Add("AUTOGG_FACTION_38", "Judge");
                 __instance.stringTable_.Add("AUTOGG_FACTION_PLURAL_38", "Judges");
                 __instance.stringTable_.Add("AUTOGG_FACTION_39", "Auditor");
