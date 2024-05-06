@@ -120,7 +120,10 @@ namespace AutoGG
             int num = (int)results.winningFaction;
             string localizedString = localizationService.GetLocalizedString("AUTOGG_FACTION_" + pluralString + num);
 
-            return GetGameOverMessage(results).Replace("%faction%", results.winType == WinType.DRAW ? "" : localizedString).Replace("%role%", "[[#" + ((byte)Pepper.GetMyRole()) + "]]");
+            string msg = GetGameOverMessage(results).Replace("%faction%", results.winType == WinType.DRAW ? "" : localizedString).Replace("%role%", "[[#" + ((byte)Pepper.GetMyRole()) + "]]");
+            Debug.Log($"[AutoGG] {msg}");
+
+            return msg;
         }
         public static string GetGameOverMessage(GameResults results)
         {
