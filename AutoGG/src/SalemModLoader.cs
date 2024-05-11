@@ -95,6 +95,12 @@ namespace SalemModLoader
                 __instance.stringTable_.Add("AUTOGG_FACTION_PLURAL_40", "Inquisitors");
                 __instance.stringTable_.Add("AUTOGG_FACTION_41", "Starspawn");
                 __instance.stringTable_.Add("AUTOGG_FACTION_PLURAL_41", "Starspawn");
+                __instance.stringTable_.Add("AUTOGG_FACTION_42", "Egotist");
+                __instance.stringTable_.Add("AUTOGG_FACTION_PLURAL_42", "Egotist");
+                __instance.stringTable_.Add("AUTOGG_FACTION_43", "Pandora");
+                __instance.stringTable_.Add("AUTOGG_FACTION_PLURAL_43", "Pandora");
+                __instance.stringTable_.Add("AUTOGG_FACTION_44", "Compliance");
+                __instance.stringTable_.Add("AUTOGG_FACTION_PLURAL_44", "Compliance");
             }
         }
     }
