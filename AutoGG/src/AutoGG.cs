@@ -128,9 +128,9 @@ namespace AutoGG
         public static string GetGameOverMessage(GameResults results)
         {
             // Get messages from the config
-            string[] wonMessages = (ModSettings.GetString("Won Game Message", "voidbehemoth.autogg") ?? DEFAULT_GAME_END).Split('|');
-            string[] lostMessages = (ModSettings.GetString("Lost Game Message", "voidbehemoth.autogg") ?? DEFAULT_GAME_END).Split('|');
-            string[] drawnMessages = (ModSettings.GetString("Drawn Game Message", "voidbehemoth.autogg") ?? DEFAULT_GAME_END).Split('|');
+            string[] wonMessages = ModSettings.GetString("Won Game Message", "voidbehemoth.autogg").Split('|');
+            string[] lostMessages = ModSettings.GetString("Lost Game Message", "voidbehemoth.autogg").Split('|');
+            string[] drawnMessages = ModSettings.GetString("Drawn Game Message", "voidbehemoth.autogg").Split('|');
             string[] endMessages = (ModSettings.GetString("Gameover Message", "voidbehemoth.autogg") ?? DEFAULT_GAME_END).Split('|');
 
             string wonMessage = wonMessages[UnityEngine.Random.Range(0, wonMessages.Length)];
@@ -141,15 +141,15 @@ namespace AutoGG
             // Determine if the player won
             bool won = results.entries[Pepper.GetMyPosition()].won;
 
-            if (won)
+            if (wonMessages.Length > 0 && won)
             {
                 return wonMessage;
             }
-            else if (!won)
+            else if (lostMessages.Length > 0 && !won)
             {
                 return lostMessage;
             }
-            else if (results.winType == WinType.DRAW)
+            else if (drawnMessages.Length > 0 && results.winType == WinType.DRAW)
             {
                 return drawnMessage;
             }
